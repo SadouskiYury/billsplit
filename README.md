@@ -1,12 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Simple application to split the bill with friends after party, just to practice
 
 Things you may want to cover:
 
 * Ruby version
-
+    3.2.2
 * System dependencies
 
 * Configuration
