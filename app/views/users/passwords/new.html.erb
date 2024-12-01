@@ -1,16 +1,41 @@
-<h2>Forgot your password?</h2>
+<!-- Section: Design Block -->
+<section class="">
+  <!-- Jumbotron -->
+  <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="height: 93vh; background-color: hsl(0, 0%, 96%)">
+    <div class="container">
+      <div class="row gx-lg-5 align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <h1 class="my-5 display-3 fw-bold ls-tight">
+            Reset your password <br />
+            <span class="text-primary">quickly and securely.</span>
+          </h1>
+          <p style="color: hsl(217, 10%, 50.8%)">
+            Enter your registered email address to receive instructions for resetting your password. Regain access to your account in no time.
+          </p>
+        </div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="card">
+            <div class="card-body py-5 px-md-5">
+              <h1>Forgot Your Password?</h1>
+              <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+                <%= render "users/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                <div class="field form-outline mt-4 mb-4">
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => 'form-control' %>
+                  <%= f.label :email %>
+                </div>
+
+                <div class="actions">
+                  <%= f.submit "Send me reset password instructions", class: 'form-control btn btn-primary btn-block mb-4' %>
+                </div>
+              <% end %>
+              <%= render "users/shared/links" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+  <!-- Jumbotron -->
+</section>

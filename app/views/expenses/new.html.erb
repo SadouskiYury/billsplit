@@ -1,13 +1,14 @@
-<div class="mt-4 container">
-    <div class="alert alert-info" role="alert">
+<div class="mt-4 container d-flex justify-content-center">
+    <div class="alert alert-info" role="alert" style="max-width: 600px; width: 100%;">
         <h1 class="text-center">Add new expense</h1>
         <button class="btn btn-lg btn-primary" onclick="toggle_function()">Toggle Split</button><br><br>
-        <div id= "equal" >
-            <%= form_with url: expenses_path,  method: :post, local: true  do |f|  %>
 
+        <!-- Equal Split Form -->
+        <div id="equal">
+            <%= form_with url: expenses_path,  method: :post, local: true  do |f|  %>
                 <%= f.hidden_field :group_id, :value => @group.id %>
                 <%= f.hidden_field :type, :value => "equal" %>
-                
+
                 <h4 class="alert-heading text-center">Equal Split</h4>
                 <h4 class="alert-heading">Paid by:</h4>
                 <% @group.users.uniq.each do |u| %>
@@ -22,18 +23,21 @@
                 <% end %>
 
                 <h4 class="alert-heading mt-4">Paid amount:</h4>
-                <div class="form-group col-md-6">
-                    <%= f.number_field :total , :class => 'form-control' %>
+                <!-- Centered Paid Amount Input -->
+                <div class="form-group d-flex justify-content-center">
+                    <div class="col-md-6">
+                        <%= f.number_field :total , :class => 'form-control' %>
+                    </div>
                 </div>
 
                 <div class="actions mt-2">
                     <%= f.submit "Submit", :class => 'btn btn-primary btn-block mb-4' %>
                 </div>
-                
             <% end %>    
         </div>
 
-        <div id= "unequal" style="display: none">
+        <!-- Unequal Split Form -->
+        <div id="unequal" style="display: none">
             <%= form_with url: expenses_path,  method: :post, local: true  do |f|  %>
                 <%= f.hidden_field :group_id, :value => @group.id %>
                 <%= f.hidden_field :type, :value => "unequal" %>
@@ -45,24 +49,33 @@
                 <% end %>
 
                 <h4 class="alert-heading mt-4">Paid amount:</h4>
-                <div class="form-group col-md-6">
-                    <%= f.number_field :total , :class => 'form-control' %>
+                <!-- Centered Paid Amount Input -->
+                <div class="form-group d-flex justify-content-center">
+                    <div class="col-md-6">
+                        <%= f.number_field :total , :class => 'form-control' %>
+                    </div>
                 </div>
 
                 <h4 class="alert-heading mt-4">Fill the share of each member:</h4>
-                <div class="form-group col-md-6">
-                    <% @group.users.uniq.each do |u| %>
-                        <%= f.number_field u.id, :class => 'form-control', placeholder: "0" %>
-                        <%= f.label(u.id, u.email) %><br>
-                    <% end %>
+                <div class="form-group d-flex justify-content-center">
+                    <div class="col-md-6">
+                        <% @group.users.uniq.each do |u| %>
+                            <%= f.number_field u.id, :class => 'form-control', placeholder: "0" %>
+                            <%= f.label(u.id, u.email) %><br>
+                        <% end %>
+                    </div>
                 </div>
 
                 <div class="actions mt-2">
                     <%= f.submit "Submit", :class => 'btn btn-primary btn-block mb-4' %>
                 </div>
-                <% end %>
+            <% end %>
         </div>
-            
+
+             <!-- Add Return to Group View Button -->
+        <div class="text-center mb-4">
+            <%= link_to 'Return to Home', root_path, class: 'btn btn-secondary' %>
+        </div>
     </div>
 </div>
 

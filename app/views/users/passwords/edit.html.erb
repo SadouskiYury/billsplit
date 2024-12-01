@@ -1,25 +1,52 @@
-<h2>Change your password</h2>
+<!-- Section: Design Block -->
+<section class="">
+  <!-- Jumbotron -->
+  <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="height: 93vh; background-color: hsl(0, 0%, 96%)">
+    <div class="container">
+      <div class="row gx-lg-5 align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <h1 class="my-5 display-3 fw-bold ls-tight">
+            Update your password <br />
+            <span class="text-primary">and regain full access.</span>
+          </h1>
+          <p style="color: hsl(217, 10%, 50.8%)">
+            Use this form to securely reset your password. Create a strong password to protect your account and keep it safe.
+          </p>
+        </div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="card">
+            <div class="card-body py-5 px-md-5">
+              <h1>Change Your Password</h1>
+              <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+                <%= render "users/shared/error_messages", resource: resource %>
+                <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+                <div class="field form-outline mt-4 mb-4">
+                  <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control" %>
+                  <%= f.label :password, "New password" %>
+                  <% if @minimum_password_length %>
+                    <small class="form-text text-muted">
+                      (Minimum: <%= @minimum_password_length %> characters)
+                    </small>
+                  <% end %>
+                </div>
+
+                <div class="field form-outline mb-4">
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+                  <%= f.label :password_confirmation, "Confirm new password" %>
+                </div>
+
+                <div class="actions">
+                  <%= f.submit "Change my password", class: "form-control btn btn-primary btn-block mb-4" %>
+                </div>
+              <% end %>
+              <%= render "users/shared/links" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+  <!-- Jumbotron -->
+</section>
